@@ -1,0 +1,15 @@
+language: node_js
+node_js: stable
+
+script:
+  - hexo clean
+  - hexo generate
+
+after_script:
+  - sed -i "s/github_token/${github_token}/g" ./_config.yml
+  - cat _config.yml
+  - hexo g -d
+
+branches:
+  only:
+    - hexo
