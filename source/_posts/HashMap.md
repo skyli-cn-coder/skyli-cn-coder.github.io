@@ -1,6 +1,9 @@
-# HashMap浅析
-
-
+---
+title: HashMap 浅析
+date: 2019-09-02 22:12:45
+categories: JSE
+tags: [JCF]
+---
 
 ### **HashMap概述**：
 
@@ -208,7 +211,7 @@ final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
         return null;
     }
 ```
-从``` put()``` 源码中我们可以看到，HashMap在首次put时才初始化hash桶数组，这种设计理念很好的避免了初始加载的内存浪费问题（要避免占着坑位不拉**的场景）。
+从 put() 源码中我们可以看到，HashMap在首次put时才初始化hash桶数组，这种设计理念很好的避免了初始加载的内存浪费问题（要避免占着坑位不拉**的场景）。
 
 **HashMap 扩容：**
 
@@ -233,6 +236,7 @@ void resize(int newCapacity) { //传入新的容量
 }
 ```
 JDK7 当HashMap 扩容时直接创建一个新的hash桶数组其大小为原数组长度2倍，并将原数组Node重新hash迁移到新数组中：
+
 ``` java
 void transfer(Entry[] newTable) {
       Entry[] src = table;                   //src引用了旧的Entry数组
